@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件的委派</title>
+		<!-- 导入重置样式表 -->
+		<link rel="stylesheet" type="text/css" href="reset.css" />
+		<script type="text/javascript">
+			window.onload = function() {
+				var u1 = document.getElementById("u1");
+				var btn = document.getElementById("btn");
+				btn.onclick = function() {
+					var li = document.createElement("li");
+					li.innerHTML = "<a href='javascript:;' class='link'>新添加链接</a>";
+					u1.appendChild(li);
+				};
+				//需求：只绑定一次事件即可应用到多个元素上，即使元素是后添加的
+				//给u1绑定一个单击响应函数
+				u1.onclick = function(event) {
+					//为event对象设置兼容性
+					event = event || window.event;
+					//如果触发事件是我们期望的元素则执行，反之不执行
+					if (event.target.className == "link") {
+						alert("我是ul的单击响应函数");
+					};
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<button id="btn">添加一个超链接</button>
+		<ul id="u1">
+			<li>
+				<p>我是p元素</p>
+			</li>
+			<li><a href="javascript:;" class="link">链接</a></li>
+			<li><a href="javascript:;" class="link">链接</a></li>
+		</ul>
+	</body>
+</html>

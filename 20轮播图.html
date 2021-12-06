@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>轮播图</title>
+		<link rel="stylesheet" href="reset.css"/>
+		<style type="text/css">
+			#outer{
+				width: 1000px;
+				height: 1000px;
+				margin:0 auto;
+				text-align: center;
+			}
+			p{
+				background-color: greenyellow;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				//点击按钮切换图片
+				var prev=document.getElementById("prev");
+				var next=document.getElementById("next");
+				var img=document.getElementsByTagName("img")[0];
+				var imgArr=["img/1.png","img/2.png","img/3.png","img/4.png","img/5.png"]
+				var index=0;
+				var info=document.getElementById("info");
+				//设置提示文字
+				info.innerHTML="总共有"+imgArr.length+"张图片,这是第"+(index+1)+"张";
+				prev.onclick=function(){
+					//切换到上一张index自增
+					index--;
+					if(index<0){
+						index=imgArr.length-1;
+					}
+					img.src=imgArr[index];
+					//设置提示文字
+					info.innerHTML="总共有"+imgArr.length+"张图片,这是第"+(index+1)+"张";
+				};
+				next.onclick=function(){
+					index++;
+					if(index>imgArr.length-1){
+						index=0;
+					}
+					img.src=imgArr[index];
+					//设置提示文字
+					info.innerHTML="总共有"+imgArr.length+"张图片,这是第"+(index+1)+"张";
+				};
+			};
+		</script>
+	</head>
+	<body>
+		
+		<div id="outer">
+			<p id="info"></p>
+			<img src="img/1.png" alt="知识点" />
+			<button id="prev">上一张</button>
+			<button id="next">下一张</button>
+			
+		</div>
+		
+	</body>
+</html>

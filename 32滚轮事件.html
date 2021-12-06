@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>滚轮事件</title>
+		<style type="text/css">
+			#box1 {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function() {
+				var box1 = document.getElementById("box1");
+				//在火狐中需要使用DOMMouseScroll来绑定滚轮事件，该事件需要通过addEventLister()函数来绑定
+				box1.onmousewheel = function(event) {
+					event = event || window.event;
+					//判断鼠标滚轮滚动方向
+					if (event.wheelDelta > 0 || event.detail < 0) {
+						//向上滚，box1边短
+						box1.style.height = box1.clientHeight - 10 + "px";
+					} else {
+						//向下滚，box1边长
+						box1.style.height = box1.clientHeight + 10 + "px";
+					}
+					//问题：当鼠标滚轮滚动时，如果浏览器有滚动条，滚动条会随着滚轮一同滚动，这是浏览器的默认行为，如果不希望发生则可以取消
+					//使用addEventLister()方法绑定响应函数，取消行为不可使用return false，若要取消可以使用event.preventDefault();
+								//兼容IE8及一下版本
+					event.preventDefault() && event.preventDefault;
+					return false;
+				}
+				//为火狐绑定滚轮事件
+				bind(box1, "DOMMouseScroll", box1.onmousewheel);
+			}
+
+			function bind(obj, eventStr, callback) {
+				if (obj.addEventListener) {
+					//大部分浏览器适用方法
+					obj.addEventListener(eventStr, callback, false);
+				} else {
+					//IE8及以下版本适用方法
+					//由于方法中this不同,采用让浏览器调用一个匿名函数,在匿名函数中调用回调函数使得两种方法中的this相同
+					boj.attachEvent("on" + eventStr, function() {
+						//在匿名函数中调用回调函数
+						callback.call(obj);
+					})
+				}
+			}
+		</script>
+	</head>
+	<body style="height: 2000px;">
+		<div id="box1"></div>
+	</body>
+</html>

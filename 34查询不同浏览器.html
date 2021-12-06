@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			//chrome中的userAgent
+			//Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36
+			//火狐中的userAgent
+			//Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0
+			//IE11中的userAgent
+			//Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36 Edg/96.0.1054.34
+			//alert(navigator.userAgent)
+			var ua=navigator.userAgent;
+			console.log(ua);
+			if(/firefox/i.test(ua)){
+				alert("火狐浏览器");
+			}else if(/chrome/i.test(ua)){
+				alert("Chrome浏览器");
+			}else if(/msie/i.test(ua)){
+				alert("IE浏览器");
+			}else if("ActiveXObject" in window){
+				alert("IE11浏览器");
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件对象兼容性问题</title>
+	</head>
+	<style type="text/css">
+		#areaDiv {
+			border: 1px solid black;
+			width: 600px;
+			height: 100px;
+		}
+
+		#showMsg {
+			border: 1px solid black;
+			width: 600px;
+			height: 50px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			var areaDiv = document.getElementById("areaDiv");
+			var showMsg = document.getElementById("showMsg");
+			areaDiv.onmousemove = function(event) {
+				//解决事件对象兼容性问题
+				// if (!event) {
+				// 	event = window.event;
+				// }
+				event = event || window.event;
+				
+				var x = event.clientX;
+				var y = event.clientY;
+				showMsg.innerHTML = ("x=" + x + ",y=" + y);
+			}
+		}
+	</script>
+	<body>
+		<div id="areaDiv"></div>
+		<br />
+		<div id="showMsg"></div>
+	</body>
+</html>

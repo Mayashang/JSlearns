@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			//for循环语法：
+			//for(初始表达式;条件表达式;更新表达式){
+			// 	语句
+			// }
+
+			//打印1——100之间所有奇数之和
+			// for (var i = 1, sum = 0; i <= 100; i++) {
+			// 	if (i % 2 != 0) {
+			// 		sum = sum + i;
+			// 	}
+			// }
+			// console.log("奇数之和为：" + sum)
+			// alert("奇数之和为："+sum)
+
+
+			//打印1--100之间7的倍数
+			// var sum=0;
+			// var count=0;
+			// for (var i=1; i <= 100; i++) {
+			// 	if (i % 7 == 0) {
+			// 		sum += i;
+			// 		count++;
+			// 	}
+			// }
+			// alert("总和为：" +sum);
+			// alert("个数为：" +count);
+
+
+
+			//打印所有水仙花数
+			// for (var i = 100,count=0; i < 1000; i++) {
+			// 	var bai = parseInt(i / 100);
+			// 	var shi = parseInt((i - bai * 100) / 10);
+			// 	var ge = i % 10;
+			// 	if (bai * bai * bai + shi * shi * shi + ge * ge * ge == i) {
+			// 		alert(i);
+			// 		count++;
+			// 	}
+			// }
+			// alert(count);
+
+
+
+			var num = prompt("请输入你想判断的数字：");
+			if (num <= 1) {
+				alert("该输入无效！！")
+			} else {
+				var flag = true;
+				for (var i = 2; i < num; i++) {
+					if (num % i == 0) {
+						flag = false;
+					}
+				}
+				if (flag) {
+					alert(num + "是质数")
+				} else {
+					alert(num + "不是质数")
+				}
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
